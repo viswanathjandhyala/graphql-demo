@@ -4,23 +4,13 @@ import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.demo.graphql.exception.BookNotFoundException;
 import com.demo.graphql.model.Author;
 import com.demo.graphql.model.Book;
-import com.demo.graphql.model.Personalinfo;
-import com.demo.graphql.model.Usercompanies;
-import com.demo.graphql.model.Userregistration;
-import com.demo.graphql.model.Userrole;
 
 public class Mutation implements GraphQLMutationResolver {
 
 	private BookRepository bookRepository;
     private AuthorRepository authorRepository;
-    private UserRepo userRepo;
-	private PersonalInfoRepo personalInfoRepo;
-	private UserCompaniesRepo userCompaniesRepo;
     
-    public Mutation(AuthorRepository authorRepository, BookRepository bookRepository, UserRepo userRepo, PersonalInfoRepo personalInfoRepo, UserCompaniesRepo userCompaniesRepo) {
-		this.userRepo = userRepo;
-		this.personalInfoRepo = personalInfoRepo;
-		this.userCompaniesRepo = userCompaniesRepo;
+    public Mutation(AuthorRepository authorRepository, BookRepository bookRepository) {
     		this.authorRepository = authorRepository; 
     		this.bookRepository = bookRepository;
     	}
@@ -65,36 +55,4 @@ public class Mutation implements GraphQLMutationResolver {
 	    	}
 	    	return book;
     }
-    
-    public boolean register(String username, Boolean userverified, String password, String firstname, String lastname, 
-			String emailid, Boolean emailverified, String phonenumber, Boolean numberverified, String profileimage) {
-		Userregistration user = userRepo.save(
-				new Userregistration(
-						username, 
-						new Userrole(1), 
-						userverified ? userverified : false, 
-						password, 
-						firstname == null ? "" : firstname, 
-						lastname == null ? "" : lastname, 
-						emailid, 
-						emailverified ?  emailverified : false, 
-						phonenumber, 
-						numberverified ?  numberverified : false)
-				);
-		if(user != null)
-			return true;
-		return false;
-	}
-	
-	public boolean addUpdatePersonalInfo(Personalinfo personalinfo) {
-		return personalInfoRepo.save(personalinfo) != null ? true : false;
-	}
-	
-	public boolean deletePersonalInfo(Integer infoid) {
-		return personalInfoRepo.deleteInfo(infoid) > 0 ? true : false;
-	}
-	
-	public boolean addUpdateCompanies(Usercompanies usercompanies) {
-		return userCompaniesRepo.save(usercompanies) != null ? true : false;
-	}
 }

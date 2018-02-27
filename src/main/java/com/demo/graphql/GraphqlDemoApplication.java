@@ -17,10 +17,7 @@ import com.demo.graphql.model.Book;
 import com.demo.graphql.repo.AuthorRepository;
 import com.demo.graphql.repo.BookRepository;
 import com.demo.graphql.repo.Mutation;
-import com.demo.graphql.repo.PersonalInfoRepo;
 import com.demo.graphql.repo.Query;
-import com.demo.graphql.repo.UserCompaniesRepo;
-import com.demo.graphql.repo.UserRepo;
 import com.demo.graphql.resolver.BookResolver;
 
 import graphql.ExceptionWhileDataFetching;
@@ -41,13 +38,13 @@ public class GraphqlDemoApplication extends SpringBootServletInitializer {
 	} 
 	
 	@Bean 
-	public Query query(AuthorRepository authorRepository, BookRepository bookRepository, UserRepo userRepo, PersonalInfoRepo personalInfoRepo, UserCompaniesRepo userCompaniesRepo) { 
-		return new Query(authorRepository, bookRepository, userRepo, personalInfoRepo, userCompaniesRepo); 
+	public Query query(AuthorRepository authorRepository, BookRepository bookRepository) { 
+		return new Query(authorRepository, bookRepository); 
 	} 
 	
 	@Bean 
-	public Mutation mutation(AuthorRepository authorRepository, BookRepository bookRepository, UserRepo userRepo, PersonalInfoRepo personalInfoRepo, UserCompaniesRepo userCompaniesRepo) { 
-		return new Mutation(authorRepository, bookRepository, userRepo, personalInfoRepo, userCompaniesRepo); 
+	public Mutation mutation(AuthorRepository authorRepository, BookRepository bookRepository) { 
+		return new Mutation(authorRepository, bookRepository); 
 	}
 
 	public static void main(String[] args) {
