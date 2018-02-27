@@ -1,0 +1,24 @@
+type Userregistration {
+	username: String!
+	userrole: Userrole
+	userverified: Boolean
+	password: String!
+	firstname: String!
+	lastname: String!
+	emailid: String!
+	emailverified: Boolean
+	phonenumber: String!
+	numberverified: Boolean
+	profileimage: String!
+}
+
+extend type Query { 
+	findDetails(username: String!, phonenumber: String!, emailid: String!): Userregistration! 
+	getProfileDetails(username: String!): Userregistration!
+	login(username: String!, password: String!): Userregistration!
+}
+
+extend type Mutation { 
+	register(username: String!, userverified: Boolean, password: String!, firstname: String!, lastname: String!, 
+			emailid: String!, emailverified: Boolean, phonenumber: String!, numberverified: Boolean, profileimage: String!): Boolean 
+}

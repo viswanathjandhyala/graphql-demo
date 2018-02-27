@@ -1,0 +1,33 @@
+type Personalinfo {
+	personalinfoid: ID!
+	userregistration: Userregistration
+	languagesknown: String!
+	gender: String!
+	qualification: String!
+	dob: String!
+	pskill1: String!
+	pskill2: String!
+	pskill3: String!
+	pskill4: String!
+	pskill5: String!
+	pskill6: String!
+	pskill7: String!
+	pskill8: String!
+	pskill9: String!
+	pskill10: String!
+	additionalskills: String!
+	documents: String!
+	preaddress: String!
+	pasaddress: String!
+	joblocation: String!
+	preferredlocation: String!
+}
+
+extend type Query { 
+	getPersonalInfo(username: String!): Personalinfo!
+}
+
+extend type Mutation { 
+	addUpdatePersonalInfo(Personalinfo: Personainfo): Boolean
+	deletePersonalInfo(personalinfoid: ID!): Boolean
+}
