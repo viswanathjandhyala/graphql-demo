@@ -6,7 +6,7 @@
 	<groupId>com.demo.graphql</groupId>
 	<artifactId>graphql-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>graphql-demo</name>
 	<description>Demo to Learn Graph QL</description>
